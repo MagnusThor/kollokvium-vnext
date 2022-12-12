@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import { useStreams } from "@/shared/useStreams";
 import { reactive } from "vue";
+import ParticipantComponent from "../participant/ParticipantComponent.vue";
 
 const streams = useStreams();
-const remoteStreams = reactive(streams.participats);
+const participants = reactive(streams.participats);
 
 </script>   
 <template>
 
-   <div v-for="[key, value] in remoteStreams" v-bind:key="key">
+   <div v-for="[key, value] in participants" v-bind:key="key">
 
-    <template v-if="value.mediastreams" >
-    <video  :src-object.prop.camel="value.mediastreams[0]" autoplay muted></video>        
-    </template>
-    
+
+    <ParticipantComponent :participant="value">
+
+    </ParticipantComponent>
   
     
 
